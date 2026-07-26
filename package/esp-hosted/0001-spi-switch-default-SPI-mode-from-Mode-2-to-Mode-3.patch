@@ -1,0 +1,45 @@
+From 7bb889cc3857df50b9adee782e21e159699dde7b Mon Sep 17 00:00:00 2001
+From: Qusai Abudhaim <Qusai.Abudhaim@gmail.com>
+Date: Wed, 22 Jul 2026 09:08:53 +0200
+Subject: [PATCH 1/4] spi: switch default SPI mode from Mode 2 to Mode 3
+
+Change the default SPI mode used by the ESP-Hosted SPI transport from
+SPI_MODE_2 to SPI_MODE_3 to match the target host controller
+configuration.
+
+This fixes SPI communication issues on the LuckFox Pico platform,
+where the default Mode 2 configuration results in failed transfers.
+---
+ .../esp/esp_driver/network_adapter/main/spi_slave_api.c         | 2 +-
+ esp_hosted_ng/host/spi/esp_spi.c                                | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/esp_hosted_ng/esp/esp_driver/network_adapter/main/spi_slave_api.c b/esp_hosted_ng/esp/esp_driver/network_adapter/main/spi_slave_api.c
+index 740f556..9aadafd 100644
+--- a/esp_hosted_ng/esp/esp_driver/network_adapter/main/spi_slave_api.c
++++ b/esp_hosted_ng/esp/esp_driver/network_adapter/main/spi_slave_api.c
+@@ -50,7 +50,7 @@ static const char TAG[] = "FW_SPI";
+ #define MAKE_SPI_DMA_ALIGNED(VAL)  (VAL += SPI_DMA_ALIGNMENT_BYTES - \
+                 ((VAL)& SPI_DMA_ALIGNMENT_MASK))
+ 
+-uint8_t g_spi_mode = SPI_MODE_2;
++uint8_t g_spi_mode = SPI_MODE_3;
+ 
+ /* Chipset specific configurations */
+ #ifdef CONFIG_IDF_TARGET_ESP32
+diff --git a/esp_hosted_ng/host/spi/esp_spi.c b/esp_hosted_ng/host/spi/esp_spi.c
+index 4261572..be22247 100644
+--- a/esp_hosted_ng/host/spi/esp_spi.c
++++ b/esp_hosted_ng/host/spi/esp_spi.c
+@@ -22,7 +22,7 @@
+ #define TX_RESUME_THRESHOLD     (TX_MAX_PENDING_COUNT/5)
+ 
+ extern u32 raw_tp_mode;
+-uint8_t g_spi_mode = SPI_MODE_2;
++uint8_t g_spi_mode = SPI_MODE_3;
+ static struct sk_buff *read_packet(struct esp_adapter *adapter);
+ static int write_packet(struct esp_adapter *adapter, struct sk_buff *skb);
+ static void spi_exit(void);
+-- 
+2.43.0
+

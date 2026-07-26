@@ -1,0 +1,4 @@
+config BR2_PACKAGE_ESP_HOSTED
+    bool "esp-hosted"
+    help
+      ESP32 WiFi/BLE hosted driver

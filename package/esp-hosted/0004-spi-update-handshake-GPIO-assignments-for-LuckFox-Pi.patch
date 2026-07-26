@@ -1,0 +1,36 @@
+From b7107699d0fb9ef0764c4d48b681a59ce423efd9 Mon Sep 17 00:00:00 2001
+From: Qusai Abudhaim <Qusai.Abudhaim@gmail.com>
+Date: Wed, 22 Jul 2026 09:12:41 +0200
+Subject: [PATCH 4/4] spi: update handshake GPIO assignments for LuckFox Pico
+
+Change the handshake and data-ready GPIO definitions to match the
+LuckFox Pico hardware configuration.
+
+- HANDSHAKE_PIN: 22 -> 52
+- SPI_DATA_READY_PIN: 27 -> 53
+
+This aligns the ESP-Hosted driver with the GPIO mapping used by the
+target platform.
+---
+ esp_hosted_ng/host/spi/esp_spi.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/esp_hosted_ng/host/spi/esp_spi.h b/esp_hosted_ng/host/spi/esp_spi.h
+index 7ce272c..28b425e 100644
+--- a/esp_hosted_ng/host/spi/esp_spi.h
++++ b/esp_hosted_ng/host/spi/esp_spi.h
+@@ -9,9 +9,9 @@
+ 
+ #include "esp.h"
+ 
+-#define HANDSHAKE_PIN           22
++#define HANDSHAKE_PIN           52
+ #define SPI_IRQ                 gpio_to_irq(HANDSHAKE_PIN)
+-#define SPI_DATA_READY_PIN      27
++#define SPI_DATA_READY_PIN      53
+ #define SPI_DATA_READY_IRQ      gpio_to_irq(SPI_DATA_READY_PIN)
+ #define SPI_BUF_SIZE            1600
+ 
+-- 
+2.43.0
+

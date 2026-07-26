@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_LUCKFOX_ESP_HOSTED_PATH/package/esp-hosted/Config.in"

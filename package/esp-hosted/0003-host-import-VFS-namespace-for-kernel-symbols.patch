@@ -1,0 +1,29 @@
+From d32e4b31dd9d567b372309f6189410ba295f8842 Mon Sep 17 00:00:00 2001
+From: Qusai Abudhaim <Qusai.Abudhaim@gmail.com>
+Date: Wed, 22 Jul 2026 09:11:42 +0200
+Subject: [PATCH 3/4] host: import VFS namespace for kernel symbols
+
+Import the VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver
+namespace to allow the ESP-Hosted driver to use VFS-exported kernel
+symbols.
+
+This resolves module loading failures caused by missing namespace
+imports when linking against VFS APIs.
+---
+ esp_hosted_ng/host/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/esp_hosted_ng/host/main.c b/esp_hosted_ng/host/main.c
+index 86deead..0e5c88d 100644
+--- a/esp_hosted_ng/host/main.c
++++ b/esp_hosted_ng/host/main.c
+@@ -1154,5 +1154,6 @@ MODULE_AUTHOR("Yogesh Mantri <yogesh.mantri@espressif.com>");
+ MODULE_AUTHOR("Kapil Gupta <kapil.gupta@espressif.com>");
+ MODULE_DESCRIPTION("Wifi driver for ESP-Hosted solution");
+ MODULE_VERSION(RELEASE_VERSION);
++MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
+ module_init(esp_init);
+ module_exit(esp_exit);
+-- 
+2.43.0
+
