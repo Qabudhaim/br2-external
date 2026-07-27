@@ -6,6 +6,32 @@ RESET_PIN=54
 
 WLAN=wlan0
 
+WPA_CONF="/etc/wpa_supplicant.conf"
+
+# WiFi configuration
+WIFI_SSID="FRITZ!Box 7530 YZ"
+WIFI_PSK="22847804674596686441"
+
+generate_wpa_config()
+{
+    echo "Generating $WPA_CONF"
+
+    cat > "$WPA_CONF" <<EOF
+ctrl_interface=/var/run/wpa_supplicant
+ap_scan=1
+update_config=1
+
+network={
+    ssid="$WIFI_SSID"
+    psk="$WIFI_PSK"
+    key_mgmt=WPA-PSK
+}
+EOF
+
+    chmod 600 "$WPA_CONF"
+}
+
+
 start()
 {
     echo "Loading ESP-Hosted"
@@ -28,6 +54,10 @@ start()
         return 1
     fi
 
+
+    generate_wpa_config
+
+
     killall wpa_supplicant 2>/dev/null
     killall wpa_cli 2>/dev/null
 
@@ -36,7 +66,8 @@ start()
     wpa_supplicant \
         -B \
         -i "$WLAN" \
-        -c /etc/wpa_supplicant.conf
+        -c "$WPA_CONF"
+
 
     echo "Starting event handler"
 
@@ -46,6 +77,7 @@ start()
         -a /usr/bin/wifi-action.sh
 }
 
+
 stop()
 {
     killall wpa_cli 2>/dev/null
@@ -53,6 +85,7 @@ stop()
 
     rmmod "$MODULE_NAME"
 }
+
 
 case "$1" in
     start)

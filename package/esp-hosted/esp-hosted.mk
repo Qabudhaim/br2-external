@@ -24,10 +24,6 @@ define ESP_HOSTED_INSTALL_TARGET_CMDS
 		$(@D)/$(ESP_HOSTED_MODULE_DIR)/esp32_spi.ko \
 		$(TARGET_DIR)/root/esp32_spi.ko
 
-	$(INSTALL) -D -m 0644 \
-		$(ESP_HOSTED_PKGDIR)/wpa_supplicant.conf \
-		$(TARGET_DIR)/etc/wpa_supplicant.conf
-
 	$(INSTALL) -D -m 0755 \
 		$(ESP_HOSTED_PKGDIR)/wifi-action.sh \
 		$(TARGET_DIR)/usr/bin/wifi-action.sh
