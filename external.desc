@@ -1,2 +1,2 @@
-name: LUCKFOX_ESP_HOSTED
-desc: Out-of-tree packages esp-hosted package
+name: BR2_EXTERNAL
+desc: Out-of-tree packages
