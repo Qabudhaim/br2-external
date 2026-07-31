@@ -1,5 +1,7 @@
 menu "External packages"
 
 source "$BR2_EXTERNAL_BR2_EXTERNAL_PATH/package/esp-hosted/Config.in"
+source "$BR2_EXTERNAL_BR2_EXTERNAL_PATH/package/device-agent/Config.in"
+source "$BR2_EXTERNAL_BR2_EXTERNAL_PATH/package/go-custom/Config.in"
 
 endmenu
