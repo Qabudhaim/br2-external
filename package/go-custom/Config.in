@@ -1,7 +1,0 @@
-config BR2_PACKAGE_HOST_GO_CUSTOM
-	bool "host go-custom"
-	help
-	  Custom Go toolchain for building Go applications.
-
-	  This package installs a custom host Go compiler
-	  instead of using Buildroot's default Go version.

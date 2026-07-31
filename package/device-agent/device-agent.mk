@@ -11,7 +11,7 @@ DEVICE_AGENT_SITE_METHOD = git
 DEVICE_AGENT_LICENSE = MIT
 DEVICE_AGENT_LICENSE_FILES = LICENSE
 
-DEVICE_AGENT_DEPENDENCIES = host-go-custom
+DEVICE_AGENT_DEPENDENCIES = host-go-toolchain
 
 define DEVICE_AGENT_BUILD_CMDS
 	cd $(@D) && \
@@ -19,7 +19,9 @@ define DEVICE_AGENT_BUILD_CMDS
 	GOARCH=arm \
 	CC="$(TARGET_CC)" \
 	CGO_ENABLED=1 \
-	$(HOST_DIR)/go-custom/bin/go build \
+	PATH=$(HOST_DIR)/go-$(HOST_GO_TOOLCHAIN_VERSION)/bin:$(PATH) \
+	export PATH \
+	go build \
 		-trimpath \
 		-ldflags="-s -w" \
 		-o $(@D)/device-agent \

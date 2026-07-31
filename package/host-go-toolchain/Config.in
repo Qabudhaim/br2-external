@@ -1,0 +1,6 @@
+config BR2_PACKAGE_HOST_GO_TOOLCHAIN
+	bool "host go-toolchain"
+	help
+	  Go toolchain for building Go applications.
+
+	  This package installs a host Go compiler.
