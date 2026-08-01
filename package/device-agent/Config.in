@@ -1,5 +1,5 @@
 config BR2_PACKAGE_DEVICE_AGENT
 	bool "device-agent"
-	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	select BR2_PACKAGE_HOST_GO_TOOLCHAIN
 	help
 	  Lightweight device management agent written in Go.

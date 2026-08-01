@@ -15,12 +15,12 @@ DEVICE_AGENT_DEPENDENCIES = host-go-toolchain
 
 define DEVICE_AGENT_BUILD_CMDS
 	cd $(@D) && \
+	PATH=$(HOST_DIR)/go-$(HOST_GO_TOOLCHAIN_VERSION)/bin:$(PATH) \
 	GOOS=linux \
 	GOARCH=arm \
 	CC="$(TARGET_CC)" \
 	CGO_ENABLED=1 \
-	PATH=$(HOST_DIR)/go-$(HOST_GO_TOOLCHAIN_VERSION)/bin:$(PATH) \
-	export PATH \
+	GOCACHE=$(@D)/.gocache \
 	go build \
 		-trimpath \
 		-ldflags="-s -w" \
