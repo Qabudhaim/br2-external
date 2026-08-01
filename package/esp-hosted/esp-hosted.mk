@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-ESP_HOSTED_VERSION = 8626b42fd3f9eb5a1ccb5daea481f0d8d32b1685
+ESP_HOSTED_VERSION = 8626b42
 ESP_HOSTED_SITE = https://github.com/espressif/esp-hosted.git
 ESP_HOSTED_SITE_METHOD = git
 
