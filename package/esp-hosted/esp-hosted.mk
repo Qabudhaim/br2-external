@@ -22,7 +22,7 @@ endef
 define ESP_HOSTED_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0644 \
 		$(@D)/$(ESP_HOSTED_MODULE_DIR)/esp32_spi.ko \
-		$(TARGET_DIR)/root/esp32_spi.ko
+		$(TARGET_DIR)/oem/usr/ko/esp32_spi.ko
 
 	$(INSTALL) -D -m 0755 \
 		$(ESP_HOSTED_PKGDIR)/wifi-action.sh \
