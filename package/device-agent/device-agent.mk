@@ -32,7 +32,9 @@ define DEVICE_AGENT_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 \
 		$(@D)/device-agent \
 		$(TARGET_DIR)/usr/bin/device-agent
+endef
 
+define DEVICE_AGENT_INSTALL_INIT_SYSV
 	$(INSTALL) -D -m 0755 \
 		$(DEVICE_AGENT_PKGDIR)/S101device-agent \
 		$(TARGET_DIR)/etc/init.d/S101device-agent
