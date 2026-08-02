@@ -3,23 +3,6 @@
 DAEMON=/usr/bin/device-agent
 PIDFILE=/var/run/device-agent.pid
 
-wait_for_network()
-{
-    logger "device-agent: waiting for network"
-
-    for i in $(seq 1 30); do
-        if ip -4 addr show wlan0 | grep -q "inet "; then
-            logger "device-agent: network ready"
-            return 0
-        fi
-
-        sleep 1
-    done
-
-    logger "device-agent: timeout waiting for network"
-    return 1
-}
-
 start()
 {
     echo "Starting device-agent..."
@@ -28,8 +11,6 @@ start()
         echo "device-agent already running"
         return 0
     fi
-
-    wait_for_network || return 1
 
     "$DAEMON" &
     echo $! > "$PIDFILE"
