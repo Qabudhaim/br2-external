@@ -31,8 +31,8 @@ endef
 
 define ESP_HOSTED_INSTALL_INIT_SYSV
 	$(INSTALL) -D -m 0755 \
-		$(ESP_HOSTED_PKGDIR)/S99esp-hosted \
-		$(TARGET_DIR)/etc/init.d/S99esp-hosted
+		$(ESP_HOSTED_PKGDIR)/S98esp-hosted \
+		$(TARGET_DIR)/etc/init.d/S98esp-hosted
 endef
 
 $(eval $(generic-package))
