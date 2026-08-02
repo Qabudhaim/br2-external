@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MODULE="/oem/usr/ko/esp32_spi.ko"
+MODULE="lib/modules/extra/esp32_spi.ko"
 MODULE_NAME="esp32_spi"
 RESET_PIN=54
 
