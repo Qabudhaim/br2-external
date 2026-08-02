@@ -36,8 +36,8 @@ endef
 
 define DEVICE_AGENT_INSTALL_INIT_SYSV
 	$(INSTALL) -D -m 0755 \
-		$(DEVICE_AGENT_PKGDIR)/S101device-agent \
-		$(TARGET_DIR)/etc/init.d/S101device-agent
+		$(DEVICE_AGENT_PKGDIR)/S99device-agent \
+		$(TARGET_DIR)/etc/init.d/S99device-agent
 endef
 
 $(eval $(generic-package))
